@@ -33,8 +33,9 @@ router.post('/', async (req, res) => {
   const userData = req.body;
 
   try {
-    const [ id ] = await db('users').insert(userData);
-    res.status(201).json({ created: id });
+    //const [ id ] = await db('users').insert(userData);
+    const newUser = await Users.add(userData)
+    res.status(201).json(newUser);
   } catch (err) {
     res.status(500).json({ message: 'Failed to create new user' });
   }
